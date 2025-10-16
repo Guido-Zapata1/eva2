@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial Médico</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f9f9; }
+        header { background-color: #007b7f; color: white; padding: 20px 0; }
+        nav a { color: white; }
+        nav a:hover { text-decoration: underline; }
+        footer { background-color: #007b7f; color: white; padding: 15px 0; text-align: center; margin-top:50px; }
+        .btn-agregar { background-color: #28a745; color: white; }
+        .btn-agregar:hover { background-color: #218838; }
+        .table-responsive { border-radius: 8px; overflow: hidden; }
+    </style>
+</head>
+<body>
+<header class="text-center">
+    <div class="container">
+        <h1>Clínica Salud Vital</h1>
+        <p>Historial Médico de Pacientes</p>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #007b7f;">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+        <a class="navbar-brand" href="{% url 'historial_create' %}">Agregar Historial</a>
+        <a class="navbar-brand" href="{% url 'medicamento_list' %}">Medicamentos</a>
+        <a class="navbar-brand" href="{% url 'paciente_list' %}">Pacientes</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="table-responsive shadow-sm">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Paciente</th>
+                    <th>Fecha de Ingreso</th>
+                    <th>Diagnóstico</th>
+                    <th>Tratamiento</th>
+                    <th>Médico Responsable</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for historial in historiales %}
+                <tr>
+                    <td>{{ historial.id }}</td>
+                    <td>{{ historial.paciente.nombre }}</td>
+                    <td>{{ historial.fecha_ingreso|date:"d/m/Y" }}</td>
+                    <td>{{ historial.diagnostico }}</td>
+                    <td>{{ historial.tratamiento }}</td>
+                    <td>{{ historial.medico_responsable }}</td>
+                    <td>
+                        <a href="{% url 'historial_update' historial.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'historial_delete' historial.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                        <strong>No hay historiales médicos registrados.</strong><br>
+                        <a href="{% url 'historial_create' %}" class="btn btn-success mt-2">Agregar primer historial</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    &copy; Guido TI3041 2025 Salud Vital Ltda. Todos los derechos reservados.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

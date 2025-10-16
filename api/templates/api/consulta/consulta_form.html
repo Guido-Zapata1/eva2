@@ -1,0 +1,46 @@
+<!-- api/templates/api/consulta/consulta_form.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>{% if object %}Editar Consulta{% else %}Nueva Consulta{% endif %}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f9f9; }
+    header, footer { background-color: #007b7f; color: white; padding: 20px 0; text-align: center; }
+</style>
+</head>
+<body>
+<header>
+    <h1>Clínica Salud Vital</h1>
+    <p>{% if object %}Editar Consulta{% else %}Nueva Consulta{% endif %}</p>
+</header>
+
+<div class="container mt-5">
+    <div class="card shadow-sm mx-auto col-md-6 p-4">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <!-- Botones para agregar paciente o médico si no existen -->
+            {% if form.paciente.value == None or form.paciente.value == "" %}
+            <a href="{% url 'paciente_create' %}" class="btn btn-info btn-sm mb-2">Agregar Paciente</a>
+            {% endif %}
+            {% if form.medico.value == None or form.medico.value == "" %}
+            <a href="{% url 'medico_create' %}" class="btn btn-info btn-sm mb-2">Agregar Médico</a>
+            {% endif %}
+
+            <div class="d-flex justify-content-between mt-3">
+                <button type="submit" class="btn btn-success">{% if object %}Actualizar{% else %}Crear{% endif %}</button>
+                <a href="{% url 'consulta_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; Guido TI3041 2025 Salud Vital Ltda. Todos los derechos reservados. 
+</footer>
+</body>
+</html>

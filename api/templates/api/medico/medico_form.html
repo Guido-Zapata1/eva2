@@ -1,0 +1,81 @@
+<!-- api/templates/api/medico/medico_form.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if object %}Editar Médico{% else %}Nuevo Médico{% endif %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f9f9;
+        }
+        header {
+            background-color: #007b7f;
+            color: white;
+            padding: 20px 0;
+        }
+        nav {
+            background-color: #007b7f;
+        }
+        nav a {
+            color: white;
+            font-weight: 500;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #007b7f;
+            color: white;
+            padding: 15px 0;
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<header class="text-center">
+    <div class="container">
+        <h1>Clínica Salud Vital</h1>
+        <p>{% if object %}Editar Médico{% else %}Nuevo Médico{% endif %}</p>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+        <a class="navbar-brand" href="{% url 'medico_list' %}">Lista de Médicos</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="card shadow-sm mx-auto col-md-6 p-4">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <!-- Botón para agregar nueva especialidad si está vacío -->
+            {% if form.especialidad.value == None or form.especialidad.value == "" %}
+            <div class="mb-3">
+                <a href="{% url 'especialidad_create' %}" class="btn btn-info btn-sm">Agregar Especialidad</a>
+            </div>
+            {% endif %}
+
+            <div class="d-flex justify-content-between mt-3">
+                <button type="submit" class="btn btn-success">{% if object %}Actualizar{% else %}Crear{% endif %}</button>
+                <a href="{% url 'medico_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        &copy; 2025 Salud Vital Ltda. Todos los derechos reservados.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/j
+

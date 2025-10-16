@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if object %}Editar{% else %}Crear{% endif %} Examen Médico</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f9f9; }
+        header { background-color: #007b7f; color: white; padding: 20px 0; }
+        nav a { color: white; }
+        nav a:hover { text-decoration: underline; }
+        footer { background-color: #007b7f; color: white; padding: 15px 0; text-align: center; margin-top:50px; }
+        .form-container { max-width: 700px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+<header class="text-center">
+    <div class="container">
+        <h1>Clínica Salud Vital</h1>
+        <p>{% if object %}Editar{% else %}Crear{% endif %} Examen Médico</p>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #007b7f;">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+        <a class="navbar-brand" href="{% url 'examen_list' %}">Volver al Listado</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="card shadow-sm p-4 form-container">
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_historial" class="form-label">Historial *</label>
+                    <select name="historial" id="id_historial" class="form-select" required>
+                        <option value="">Seleccione un historial</option>
+                        {% for historial in form.historial.field.queryset %}
+                            <option value="{{ historial.id }}" {% if form.historial.value == historial.id %}selected{% endif %}>
+                                Historial #{{ historial.id }} - {{ historial.paciente.nombre }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_medico_responsable" class="form-label">Médico Responsable *</label>
+                    <select name="medico_responsable" id="id_medico_responsable" class="form-select" required>
+                        <option value="">Seleccione un médico</option>
+                        {% for medico in form.medico_responsable.field.queryset %}
+                            <option value="{{ medico.id }}" {% if form.medico_responsable.value == medico.id %}selected{% endif %}>
+                                Dr. {{ medico.nombre }} {{ medico.apellido }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="id_tipo_examen" class="form-label">Tipo de Examen *</label>
+                <input type="text" name="tipo_examen" id="id_tipo_examen" 
+                       value="{{ form.tipo_examen.value|default:'' }}" class="form-control" required
+                       placeholder="Ej: Radiografía de tórax, Análisis de sangre, etc.">
+            </div>
+
+            <div class="mb-3">
+                <label for="id_resultado" class="form-label">Resultado</label>
+                <textarea name="resultado" id="id_resultado" class="form-control" rows="4"
+                          placeholder="Describa los resultados del examen">{{ form.resultado.value|default:'' }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="id_fecha_examen" class="form-label">Fecha del Examen *</label>
+                <input type="date" name="fecha_examen" id="id_fecha_examen" 
+                       value="{{ form.fecha_examen.value|default:'' }}" class="form-control" required>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-success">
+                    {% if object %}Actualizar{% else %}Crear{% endif %} Examen
+                </button>
+                <a href="{% url 'examen_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; Guido TI3041 2025 Salud Vital Ltda. Todos los derechos reservados. 
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

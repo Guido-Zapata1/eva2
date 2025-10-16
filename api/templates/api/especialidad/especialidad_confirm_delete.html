@@ -1,0 +1,89 @@
+<!-- api/templates/api/especialidad/especialidad_confirm_delete.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Especialidad</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f9f9;
+        }
+        header {
+            background-color: #007b7f;
+            color: white;
+            padding: 20px 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        nav a {
+            color: white;
+            font-weight: 500;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #007b7f;
+            color: white;
+            padding: 15px 0;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .card {
+            padding: 20px;
+            margin-top: 50px;
+        }
+        .btn-group a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="text-center">
+        <div class="container">
+            <h1>Clínica Salud Vital</h1>
+            <p>Eliminar Especialidad</p>
+        </div>
+    </header>
+
+    <!-- Menú -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+        </div>
+    </nav>
+
+    <!-- Contenido -->
+    <div class="container">
+        <div class="card shadow-sm mx-auto col-md-6 text-center">
+            <h3>¿Estás seguro de eliminar la especialidad?</h3>
+            <p><strong>{{ object.nombre }}</strong></p>
+            <p>{{ object.descripcion|default:"Sin descripción" }}</p>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a href="{% url 'especialidad_list' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer>
+    &copy; Guido TI3041 2025 Salud Vital Ltda. Todos los derechos reservados. 
+</footer>
+</body>
+</html>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

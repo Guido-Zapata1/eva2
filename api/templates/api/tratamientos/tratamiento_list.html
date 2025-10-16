@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tratamientos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f9f9; }
+        header { background-color: #007b7f; color: white; padding: 20px 0; }
+        nav a { color: white; margin-right: 15px; }
+        nav a:hover { text-decoration: underline; }
+        footer { background-color: #007b7f; color: white; padding: 15px 0; text-align: center; margin-top:50px; }
+    </style>
+</head>
+<body>
+<header class="text-center">
+    <div class="container">
+        <h1>Clínica Salud Vital</h1>
+        <p>Lista de Tratamientos</p>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #007b7f;">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+        <a class="navbar-brand" href="{% url 'consulta_list' %}">Consultas</a>
+        <a class="navbar-brand" href="{% url 'tratamiento_create' %}">Agregar Tratamiento</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+        <table class="table table-striped table-hover">
+            <thead class="table-success">
+                <tr>
+                    <th>ID</th>
+                    <th>Consulta</th>
+                    <th>Descripción</th>
+                    <th>Duración (días)</th>
+                    <th>Observaciones</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tratamiento in tratamientos %}
+                <tr>
+                    <td>{{ tratamiento.id }}</td>
+                    <td>{{ tratamiento.consulta }}</td>
+                    <td>{{ tratamiento.descripcion }}</td>
+                    <td>{{ tratamiento.duracion_dias }}</td>
+                    <td>{{ tratamiento.observaciones }}</td>
+                    <td>
+                        <a href="{% url 'tratamiento_update' tratamiento.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'tratamiento_delete' tratamiento.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No hay tratamientos registrados</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<footer>
+    &copy; Guido TI3041 2025 Salud Vital Ltda. Todos los derechos reservados. 
+</footer>
+</body>
+</html>
+
+
+
+
+

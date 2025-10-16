@@ -1,0 +1,362 @@
+[
+  {
+    "model": "api.especialidad",
+    "pk": 1,
+    "fields": {
+      "nombre": "Cardiología",
+      "descripcion": "Especialidad médica que se ocupa del corazón y sistema circulatorio."
+    }
+  },
+  {
+    "model": "api.especialidad",
+    "pk": 2,
+    "fields": {
+      "nombre": "Pediatría",
+      "descripcion": "Atención médica de niños y adolescentes."
+    }
+  },
+  {
+    "model": "api.especialidad",
+    "pk": 3,
+    "fields": {
+      "nombre": "Dermatología",
+      "descripcion": "Diagnóstico y tratamiento de enfermedades de la piel."
+    }
+  },
+  {
+    "model": "api.especialidad",
+    "pk": 4,
+    "fields": {
+      "nombre": "Ginecología",
+      "descripcion": "Salud reproductiva femenina y sistema ginecológico."
+    }
+  },
+  {
+    "model": "api.especialidad",
+    "pk": 5,
+    "fields": {
+      "nombre": "Traumatología",
+      "descripcion": "Diagnóstico y tratamiento de lesiones musculoesqueléticas."
+    }
+  },
+  {
+    "model": "api.medico",
+    "pk": 1,
+    "fields": {
+      "nombre": "María",
+      "apellido": "González",
+      "rut": "11111111-1",
+      "correo": "maria.gonzalez@clinicachile.cl",
+      "telefono": "+56911111111",
+      "activo": true,
+      "especialidad": 1
+    }
+  },
+  {
+    "model": "api.medico",
+    "pk": 2,
+    "fields": {
+      "nombre": "Carlos",
+      "apellido": "López",
+      "rut": "22222222-2",
+      "correo": "carlos.lopez@clinicachile.cl",
+      "telefono": "+56922222222",
+      "activo": true,
+      "especialidad": 2
+    }
+  },
+  {
+    "model": "api.medico",
+    "pk": 3,
+    "fields": {
+      "nombre": "Elena",
+      "apellido": "Ramírez",
+      "rut": "33333333-3",
+      "correo": "elena.ramirez@clinicachile.cl",
+      "telefono": "+56955555555",
+      "activo": true,
+      "especialidad": 4
+    }
+  },
+  {
+    "model": "api.medico",
+    "pk": 4,
+    "fields": {
+      "nombre": "Roberto",
+      "apellido": "Silva",
+      "rut": "44444444-4",
+      "correo": "roberto.silva@clinicachile.cl",
+      "telefono": "+56966666666",
+      "activo": true,
+      "especialidad": 5
+    }
+  },
+  {
+    "model": "api.paciente",
+    "pk": 1,
+    "fields": {
+      "rut": "12345678-9",
+      "nombre": "Juan",
+      "apellido": "Pérez",
+      "fecha_nacimiento": "1990-03-12",
+      "tipo_sangre": "A+",
+      "correo": "juan.perez@example.com",
+      "telefono": "+56933333333",
+      "direccion": "Calle Falsa 123, Temuco",
+      "activo": true
+    }
+  },
+  {
+    "model": "api.paciente",
+    "pk": 2,
+    "fields": {
+      "rut": "98765432-1",
+      "nombre": "Ana",
+      "apellido": "Torres",
+      "fecha_nacimiento": "1985-11-02",
+      "tipo_sangre": "O-",
+      "correo": "ana.torres@example.com",
+      "telefono": "+56944444444",
+      "direccion": "Av. Principal 456, Padre Las Casas",
+      "activo": true
+    }
+  },
+  {
+    "model": "api.paciente",
+    "pk": 3,
+    "fields": {
+      "rut": "11222333-4",
+      "nombre": "María",
+      "apellido": "Fernández",
+      "fecha_nacimiento": "1978-07-15",
+      "tipo_sangre": "B+",
+      "correo": "maria.fernandez@example.com",
+      "telefono": "+56977777777",
+      "direccion": "Los Pinos 789, Temuco",
+      "activo": true
+    }
+  },
+  {
+    "model": "api.paciente",
+    "pk": 4,
+    "fields": {
+      "rut": "55666777-8",
+      "nombre": "Pedro",
+      "apellido": "Mendoza",
+      "fecha_nacimiento": "1995-12-03",
+      "tipo_sangre": "AB+",
+      "correo": "pedro.mendoza@example.com",
+      "telefono": "+56988888888",
+      "direccion": "Av. Alemania 234, Temuco",
+      "activo": true
+    }
+  },
+  {
+    "model": "api.consultamedica",
+    "pk": 1,
+    "fields": {
+      "paciente": 1,
+      "medico": 1,
+      "fecha_consulta": "2025-10-01T10:00:00Z",
+      "motivo": "Dolor en el pecho",
+      "diagnostico": "Posible angina leve",
+      "estado": "confirmada"
+    }
+  },
+  {
+    "model": "api.consultamedica",
+    "pk": 2,
+    "fields": {
+      "paciente": 2,
+      "medico": 2,
+      "fecha_consulta": "2025-10-03T15:30:00Z",
+      "motivo": "Tos persistente",
+      "diagnostico": "Bronquitis leve",
+      "estado": "pendiente"
+    }
+  },
+  {
+    "model": "api.consultamedica",
+    "pk": 3,
+    "fields": {
+      "paciente": 3,
+      "medico": 3,
+      "fecha_consulta": "2025-10-05T11:00:00Z",
+      "motivo": "Control anual ginecológico",
+      "diagnostico": "Estado saludable, resultados Papanicolaou pendientes",
+      "estado": "completada"
+    }
+  },
+  {
+    "model": "api.consultamedica",
+    "pk": 4,
+    "fields": {
+      "paciente": 4,
+      "medico": 4,
+      "fecha_consulta": "2025-10-06T09:30:00Z",
+      "motivo": "Esguince de tobillo derecho",
+      "diagnostico": "Esguince grado I",
+      "estado": "confirmada"
+    }
+  },
+  {
+    "model": "api.tratamientos",
+    "pk": 1,
+    "fields": {
+      "consulta": 1,
+      "descripcion": "Reposo y medicación para reducir el dolor.",
+      "duracion_dias": 7,
+      "observaciones": "Controlar presión arterial diariamente."
+    }
+  },
+  {
+    "model": "api.tratamientos",
+    "pk": 2,
+    "fields": {
+      "consulta": 2,
+      "descripcion": "Jarabe expectorante y descanso.",
+      "duracion_dias": 5,
+      "observaciones": "Evitar exposición al frío."
+    }
+  },
+  {
+    "model": "api.tratamientos",
+    "pk": 3,
+    "fields": {
+      "consulta": 3,
+      "descripcion": "Control preventivo y seguimiento",
+      "duracion_dias": 30,
+      "observaciones": "Retirar resultados en 15 días"
+    }
+  },
+  {
+    "model": "api.tratamientos",
+    "pk": 4,
+    "fields": {
+      "consulta": 4,
+      "descripcion": "Reposo, hielo y elevación de la extremidad",
+      "duracion_dias": 14,
+      "observaciones": "Evitar carga excesiva en el tobillo"
+    }
+  },
+  {
+    "model": "api.medicamento",
+    "pk": 1,
+    "fields": {
+      "nombre": "Paracetamol 500mg",
+      "laboratorio": "Laboratorio Chile",
+      "stock": 120,
+      "precio_unitario": "500.00"
+    }
+  },
+  {
+    "model": "api.medicamento",
+    "pk": 2,
+    "fields": {
+      "nombre": "Ibuprofeno 400mg",
+      "laboratorio": "Medifarma",
+      "stock": 80,
+      "precio_unitario": "700.00"
+    }
+  },
+  {
+    "model": "api.medicamento",
+    "pk": 3,
+    "fields": {
+      "nombre": "Amoxicilina 500mg",
+      "laboratorio": "Laboratorio Andrómaco",
+      "stock": 60,
+      "precio_unitario": "1200.00"
+    }
+  },
+  {
+    "model": "api.medicamento",
+    "pk": 4,
+    "fields": {
+      "nombre": "Omeprazol 20mg",
+      "laboratorio": "Laboratorio Chile",
+      "stock": 150,
+      "precio_unitario": "300.00"
+    }
+  },
+  {
+    "model": "api.recetamedica",
+    "pk": 1,
+    "fields": {
+      "tratamiento": 1,
+      "medicamento": 1,
+      "dosis": "1 tableta cada 8 horas",
+      "frecuencia": "3 veces al día",
+      "duracion": "7 días"
+    }
+  },
+  {
+    "model": "api.recetamedica",
+    "pk": 2,
+    "fields": {
+      "tratamiento": 2,
+      "medicamento": 2,
+      "dosis": "1 tableta cada 12 horas",
+      "frecuencia": "2 veces al día",
+      "duracion": "5 días"
+    }
+  },
+  {
+    "model": "api.recetamedica",
+    "pk": 3,
+    "fields": {
+      "tratamiento": 4,
+      "medicamento": 1,
+      "dosis": "1 tableta cada 8 horas",
+      "frecuencia": "3 veces al día",
+      "duracion": "5 días"
+    }
+  },
+  {
+    "model": "api.historialatencion",
+    "pk": 1,
+    "fields": {
+      "paciente": 2,
+      "medico": 2,
+      "fecha": "2025-10-03T16:00:00Z",
+      "diagnostico": "Bronquitis leve en tratamiento.",
+      "tratamiento": "Jarabe y descanso.",
+      "observaciones": "Evaluar evolución respiratoria."
+    }
+  },
+  {
+    "model": "api.historialatencion",
+    "pk": 2,
+    "fields": {
+      "paciente": 3,
+      "medico": 3,
+      "fecha": "2025-10-05T12:00:00Z",
+      "diagnostico": "Control ginecológico rutinario satisfactorio",
+      "tratamiento": "Seguimiento preventivo",
+      "observaciones": "Paciente asintomática, esperar resultados de exámenes"
+    }
+  },
+  {
+    "model": "api.examenmedico",
+    "pk": 1,
+    "fields": {
+      "historial": 1,
+      "tipo_examen": "Radiografía de tórax",
+      "resultado": "Pequeña inflamación bronquial",
+      "fecha_examen": "2025-10-04",
+      "medico_responsable": 2
+    }
+  },
+  {
+    "model": "api.examenmedico",
+    "pk": 2,
+    "fields": {
+      "historial": 2,
+      "tipo_examen": "Papanicolaou",
+      "resultado": "Muestra adecuada para análisis",
+      "fecha_examen": "2025-10-05",
+      "medico_responsable": 3
+    }
+  }
+]
+
